@@ -1,0 +1,522 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('./font/WHEREIST.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'CustomFont2';
+    src: url('./font/Avignon.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'CustomFont', sans-serif;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.line {
+    display: flex;
+}
+
+.letter {
+    display: inline-block;
+    font-size: 12rem;
+    opacity: 0;
+    animation: letterAppear 0.5s forwards;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.styled-text {
+    font-family: 'CustomFont', sans-serif;
+    /* Apply WHEREIST.TTF to letters */
+}
+
+@keyframes letterAppear {
+    0% {
+        transform: scale(0) translateZ(1000px);
+        opacity: 0;
+        text-shadow: 0 0 20px white;
+    }
+
+    50% {
+        transform: scale(1.5) translateZ(500px);
+        opacity: 1;
+        text-shadow: 0 0 40px white;
+    }
+
+    100% {
+        transform: scale(1) translateZ(0);
+        opacity: 1;
+        text-shadow: none;
+    }
+}
+
+.text-animation {
+    position: absolute;
+    left: 670px;
+    top: 75%;
+    transform: translateY(-50%);
+    color: #00FF00;
+    font-size: 1.5rem;
+    font-family: 'Wheri', monospace;
+    white-space: pre;
+}
+
+.text-line {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+.text-line span.blink {
+    animation: blink 1s step-start infinite;
+}
+
+.text-line span.letter {
+    animation: appear 0.15s ease-in-out forwards;
+}
+
+.play-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 16px 32px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.ready-text {
+    margin-top: 20px;
+    font-size: 20px;
+    color: green;
+    font-family: 'CustomFont2', 'Courier New', Courier, monospace;
+    white-space: pre;
+}
+
+.start-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 1s forwards 1s, blink-animation 0.5s step-end infinite alternate;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: black;
+    color: white;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blink-animation {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.modal-content {
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 900px;
+    height: 400px;
+    max-width: 90%;
+    text-align: left;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.modal-content .modal-anim:nth-child(1) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #171618, #3bff3b);
+    animation: animate1 2s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.modal-content .modal-anim:nth-child(2) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to bottom, #171618, #3bff3b);
+    animation: animate2 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes animate2 {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.modal-content .modal-anim:nth-child(3) {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to left, #171618, #3bff3b);
+    animation: animate3 2s linear infinite;
+}
+
+@keyframes animate3 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.modal-content .modal-anim:nth-child(4) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background: linear-gradient(to top, #171618, #3bff3b);
+    animation: animate4 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes animate4 {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.modal-image {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+}
+
+.modal-body {
+    color: green;
+    text-align: left;
+    white-space: pre-wrap;
+    /* Respecter les sauts de ligne */
+    font-family: 'CustomFont2', 'Courier New', Courier, monospace;
+    font-size: 16px;
+    flex-grow: 1;
+    width: 700px;
+    word-break: break-word;
+    /* Empêcher les mots d'être coupés de manière incorrecte */
+}
+
+.modal-footer {
+    text-align: center;
+    margin-top: auto;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.continue-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.continue-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.blink {
+    animation: blink-animation 1s steps(2, start) infinite;
+    -webkit-animation: blink-animation 1s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+.modal-text {
+    white-space: pre-wrap;
+    /* Respecter les sauts de ligne */
+    font-family: 'CustomFont2', monospace;
+    word-break: break-word;
+    /* Empêcher les mots d'être coupés de manière incorrecte */
+}
+
+.modal-line {
+    white-space: pre-wrap;
+    /* Respecter les sauts de ligne */
+}
+
+.whereist-font {
+    font-family: 'CustomFont', sans-serif;
+}
+
+.blinking-underscore {
+    position: absolute;
+    right: -1em;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes clipMe {
+
+    0%,
+    100% {
+        clip: rect(0px, 100%, 2px, 0px);
+    }
+
+    25% {
+        clip: rect(0px, 2px, 100%, 0px);
+    }
+
+    50% {
+        clip: rect(calc(100% - 2px), 100%, 100%, 0px);
+    }
+
+    75% {
+        clip: rect(0px, 100%, 100%, calc(100% - 2px));
+    }
+}
+
+.modal-content::before,
+.modal-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: -5px;
+    box-shadow: inset 0 0 0 2px green;
+    animation: clipMe 8s linear infinite;
+    z-index: -1;
+}
+
+.modal-content::before {
+    animation-delay: -4s;
+}
+
+.modal-letter {
+    display: inline-block;
+    font-family: 'CustomFont2', 'Courier New', Courier, monospace;
+    color: green;
+}
+
+.choice-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.choice-content {
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.choice-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.choice-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.blinking {
+    animation: blinking 0.5s infinite;
+}
+
+@keyframes blinking {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.loser-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    /* Ajustez la couleur de fond selon vos besoins */
+}
+
+.loser-content {
+    display: flex;
+    flex-direction: column;
+    /* Change to column for vertical alignment */
+    align-items: center;
+    height: 100%;
+    /* Ensure the content takes the full height */
+    width: 100%;
+    /* Ensure the content takes the full width */
+}
+
+.loser-text {
+    color: white;
+    /* Couleur du texte */
+    font-size: 2rem;
+    /* Taille du texte */
+    margin-bottom: 20px;
+    /* Space between text and image */
+}
+
+.loser-image {
+    height: calc(100vh - 100px);
+    /* Take full height minus the space for text and button */
+    width: auto;
+}
+
+.loser-button {
+    margin-top: 20px;
+    /* Space between image and button */
+}
+
+.loser-button button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.loser-button button:hover {
+    background-color: #218838;
+    color: white;
+}
