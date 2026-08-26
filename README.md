@@ -1,58 +1,56 @@
 # EarthMap Game
 
-## Description
+Jeu éducatif interactif : trouve les pays ou les monuments sur un globe terrestre rotatif.
 
-EarthMap Game is an interactive educational game where players are challenged to find countries or monuments on a rotating Earth map. The game features two modes: "Find the Country" and "Find the Monument." Players must answer correctly five times to win the game or they lose after five incorrect answers.
+## Stack
 
+- **Next.js 15** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **D3** (globe orthographique)
+- **Three.js** (fond étoilé + intro hyperspace)
+- **GSAP** (animation intro)
 
-    Ensure you have the following libraries installed:
-    - `react-router-dom`
-    - `d3-geo`
-    - `topojson-client`
+## Démarrage
 
-    If not installed, you can add them via npm:
+```sh
+npm install
+npm run dev
+```
 
-    ```sh
-    npm install react-router-dom d3-geo topojson-client
-    ```
+Ouvre [http://localhost:3000](http://localhost:3000).
 
+## Scripts
 
-## How to Play
+| Commande | Description |
+|----------|-------------|
+| `npm run dev` | Serveur de développement |
+| `npm run build` | Build de production |
+| `npm start` | Serveur de production |
+| `npm run lint` | ESLint |
 
-### Introduction
+## Comment jouer
 
-1. When you start the game, you will see an animation displaying "Earth 841_" and "System 451-b".
-2. After the animation, an alien will appear and explain the rules of the game.
+1. Sur l’accueil, lance l’intro (hyperspace + alien).
+2. Sur `/play`, choisis un mode :
+   - **Trouver le pays** — 5 jokers
+   - **Trouver le monument** — 2 jokers
+3. Clique le pays sur le globe, puis **Valider**.
+4. 5 bonnes réponses → victoire ; 5 mauvaises → défaite.
 
-### Game Modes
+### Contrôles carte
 
-1. **Find the Country:**
-    - A country name is given.
-    - You need to select the correct country on the map.
-    - You have 5 jokers which allow you to skip to the next country without guessing.
+- **Glisser** : faire tourner le globe
+- **Molette / pinch** : zoomer (le zoom est conservé pendant le jeu)
+- **Cliquer** : sélectionner un pays
 
-2. **Find the Monument:**
-    - A monument name is given.
-    - You need to select the country where the monument is located.
-    - You have 2 jokers which allow you to skip to the next monument without guessing.
+## Structure
 
-### Scoring
-
-- You need to answer correctly five times to win.
-- If you get five incorrect answers, you lose.
-
-### Controls
-
-- **Validate:** Validates your selection.
-- **Next:** Skips to the next country/monument. If you use a joker, the count decreases.
-
-## Additional Features
-
-### Animation and Sound
-
-- The game includes background animation and sound effects.
-- Sound plays when the alien explains the game rules and loops until the player proceeds.
-
-### Prevent Repeated Countries/Monuments
-
-- The game ensures that the same country or monument does not appear more than once in a single game session.
+```
+app/           # Routes Next.js (/, /play, /winner, /loser)
+components/    # GlobeMap, PlayGame, StarryBackground, GameHud
+lib/           # Cache GeoJSON, logique jeu, hyperspace
+data/          # monuments.json, translations.json
+public/        # assets + world.geojson
+types/         # Types TypeScript
+```
